@@ -10,22 +10,31 @@
 
 == Quick Summary
 
+=== Done (v0.0.1)
+
+* [x] ABI contract (`include/bebop_v_ffi.h`) — stable
+* [x] V bindings (`v/bebop_bridge.v`) — complete
+* [x] Zig build system and stub implementation
+* [x] Documentation and white paper
+* [x] Schema (`schemas/sensors.bop`)
+
 === Now
 
-* Stabilize `include/bebop_v_ffi.h` (ABI contract) and `v/bebop_bridge.v`
-* Add golden vectors for decode/encode round-trip tests
-* Provide a reference Zig implementation using `bebopc --lang c` generated code
+* Implement actual Bebop decode in Zig
+* Generate real wire bytes for golden vectors (using `bebopc`)
+* Implement encode
 
 === Next
 
+* CI matrix (Linux/macOS, multiple Zig versions)
+* V integration test (link V to Zig .so)
 * Rust implementation (plug-compatible; help wanted)
-* CI matrix (Linux/macOS, multiple Zig versions, V version pin)
-* Fuzz tests around decode/encode (where practical)
 
 === Later
 
+* Fuzz tests around decode/encode
 * Publish V module packaging guidance
-* Context-per-connection example server
+* WASM target for browser/Deno
 
 ---
 
