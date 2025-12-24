@@ -12,10 +12,10 @@ set shell := ["bash", "-uc"]
 set dotenv-load := true
 set positional-arguments := true
 
-# Project metadata - CUSTOMIZE THESE
-project := "RSR-template-repo"
-version := "0.1.0"
-tier := "infrastructure"  # 1 | 2 | infrastructure
+# Project metadata
+project := "bebop-v-ffi"
+version := "0.0.1"
+tier := "infrastructure"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # DEFAULT & HELP
@@ -53,16 +53,12 @@ info:
 # Build the project (debug mode)
 build *args:
     @echo "Building {{project}}..."
-    # TODO: Add build command for your language
-    # Rust: cargo build {{args}}
-    # ReScript: npm run build
-    # Elixir: mix compile
+    cd implementations/zig && zig build {{args}}
 
 # Build in release mode with optimizations
 build-release *args:
     @echo "Building {{project}} (release)..."
-    # TODO: Add release build command
-    # Rust: cargo build --release {{args}}
+    cd implementations/zig && zig build -Doptimize=ReleaseFast {{args}}
 
 # Build and watch for changes
 build-watch:
@@ -74,7 +70,8 @@ build-watch:
 # Clean build artifacts [reversible: rebuild with `just build`]
 clean:
     @echo "Cleaning..."
-    rm -rf target _build dist lib node_modules
+    rm -rf implementations/zig/zig-out implementations/zig/zig-cache
+    rm -rf implementations/rust/target
 
 # Deep clean including caches [reversible: rebuild]
 clean-all: clean
@@ -87,10 +84,7 @@ clean-all: clean
 # Run all tests
 test *args:
     @echo "Running tests..."
-    # TODO: Add test command
-    # Rust: cargo test {{args}}
-    # ReScript: npm test
-    # Elixir: mix test
+    cd implementations/zig && zig build test {{args}}
 
 # Run tests with verbose output
 test-verbose:

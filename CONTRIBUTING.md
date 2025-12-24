@@ -1,13 +1,31 @@
+# Contributing
+
+Thanks for your interest.
+
+This repo's core deliverable is the **FFI contract** (the C ABI in `include/bebop_v_ffi.h`).
+Implementations (Zig, Rust, …) must not change that contract casually.
+
+## AI Assistance Policy
+
+AI assistance is welcome for design and documentation, but must not be treated as an
+authoritative agent that directly mutates ABI, build logic, or serialization.
+
+See `META.scm` for governance principles.
+
+---
+
+## Getting Started
+
 # Clone the repository
-git clone https://{{FORGE}}/{{OWNER}}/{{REPO}}.git
-cd {{REPO}}
+git clone https://github.com/hyperpolymath/bebop-v-ffi.git
+cd bebop-v-ffi
 
 # Using Nix (recommended for reproducibility)
 nix develop
 
 # Or using toolbox/distrobox
-toolbox create {{REPO}}-dev
-toolbox enter {{REPO}}-dev
+toolbox create bebop-v-ffi-dev
+toolbox enter bebop-v-ffi-dev
 # Install dependencies manually
 
 # Verify setup
@@ -17,7 +35,7 @@ just test    # Run test suite
 
 ### Repository Structure
 ```
-{{REPO}}/
+bebop-v-ffi/
 ├── src/                 # Source code (Perimeter 1-2)
 ├── lib/                 # Library code (Perimeter 1-2)
 ├── extensions/          # Extensions (Perimeter 2)
@@ -53,7 +71,7 @@ just test    # Run test suite
 
 **Before reporting**:
 1. Search existing issues
-2. Check if it's already fixed in `{{MAIN_BRANCH}}`
+2. Check if it's already fixed in `main`
 3. Determine which perimeter the bug affects
 
 **When reporting**:
@@ -86,10 +104,10 @@ Use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md) an
 
 Look for issues labelled:
 
-- [`good first issue`](https://{{FORGE}}/{{OWNER}}/{{REPO}}/labels/good%20first%20issue) — Simple Perimeter 3 tasks
-- [`help wanted`](https://{{FORGE}}/{{OWNER}}/{{REPO}}/labels/help%20wanted) — Community help needed
-- [`documentation`](https://{{FORGE}}/{{OWNER}}/{{REPO}}/labels/documentation) — Docs improvements
-- [`perimeter-3`](https://{{FORGE}}/{{OWNER}}/{{REPO}}/labels/perimeter-3) — Community sandbox scope
+- [`good first issue`](https://github.com/hyperpolymath/bebop-v-ffi/labels/good%20first%20issue) — Simple Perimeter 3 tasks
+- [`help wanted`](https://github.com/hyperpolymath/bebop-v-ffi/labels/help%20wanted) — Community help needed
+- [`documentation`](https://github.com/hyperpolymath/bebop-v-ffi/labels/documentation) — Docs improvements
+- [`perimeter-3`](https://github.com/hyperpolymath/bebop-v-ffi/labels/perimeter-3) — Community sandbox scope
 
 ---
 

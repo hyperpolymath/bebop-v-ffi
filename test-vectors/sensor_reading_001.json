@@ -1,0 +1,29 @@
+{
+  "name": "sensor_reading_001",
+  "description": "Basic SensorReading with temperature data",
+  "schema": "SensorReading",
+  "input": {
+    "timestamp": 1735000000000,
+    "sensorId": "temp-sensor-01",
+    "sensorType": 1,
+    "value": 23.5,
+    "unit": "celsius",
+    "location": "factory-floor-a",
+    "metadata": {
+      "firmware": "1.2.3",
+      "calibrated": "true"
+    }
+  },
+  "wire_bytes_hex": "00000000000000000000000000000000",
+  "wire_bytes_comment": "TODO: Generate actual Bebop wire bytes using bebopc",
+  "expected_decode": {
+    "timestamp": 1735000000000,
+    "sensor_id": "temp-sensor-01",
+    "sensor_type": 1,
+    "value": 23.5,
+    "unit": "celsius",
+    "location": "factory-floor-a",
+    "metadata_count": 2
+  },
+  "round_trip": true
+}

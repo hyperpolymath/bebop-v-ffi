@@ -8,7 +8,28 @@
 
 > Development roadmap from initial implementation through next-generation hybrid architecture
 
-== Overview
+== Quick Summary
+
+=== Now
+
+* Stabilize `include/bebop_v_ffi.h` (ABI contract) and `v/bebop_bridge.v`
+* Add golden vectors for decode/encode round-trip tests
+* Provide a reference Zig implementation using `bebopc --lang c` generated code
+
+=== Next
+
+* Rust implementation (plug-compatible; help wanted)
+* CI matrix (Linux/macOS, multiple Zig versions, V version pin)
+* Fuzz tests around decode/encode (where practical)
+
+=== Later
+
+* Publish V module packaging guidance
+* Context-per-connection example server
+
+---
+
+== Detailed Waypoints
 
 This roadmap outlines three major waypoints for Bebop-V-FFI development:
 
