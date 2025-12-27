@@ -29,7 +29,24 @@ pub struct C.VSensorReading {
     error_message &char
 }
 
+// Error codes (match bebop_v_ffi.h)
+pub const bebop_ok = 0
+pub const bebop_err_null_ctx = -1
+pub const bebop_err_null_data = -2
+pub const bebop_err_invalid_length = -3
+pub const bebop_err_decode_failed = -4
+pub const bebop_err_encode_failed = -5
+pub const bebop_err_buffer_too_small = -6
+pub const bebop_err_not_implemented = -99
+
+// SensorType values (match sensors.bop)
+pub const sensor_type_temperature = u16(1)
+pub const sensor_type_humidity = u16(2)
+pub const sensor_type_pressure = u16(3)
+pub const sensor_type_vibration = u16(4)
+
 // C ABI functions
+fn C.bebop_version() u32
 fn C.bebop_ctx_new() &C.BebopCtx
 fn C.bebop_ctx_free(ctx &C.BebopCtx)
 fn C.bebop_ctx_reset(ctx &C.BebopCtx)
@@ -43,6 +60,27 @@ fn C.bebop_encode_batch_readings(ctx &C.BebopCtx, readings &C.VSensorReading, co
 fn bytes_to_string(b C.VBytes) string {
     if isnil(b.ptr) || b.len == 0 { return '' }
     return unsafe { b.ptr.vstring_with_len(int(b.len)) }
+}
+
+// Version info
+pub struct Version {
+pub:
+    major u8
+    minor u8
+    patch u8
+}
+
+pub fn version() Version {
+    v := C.bebop_version()
+    return Version{
+        major: u8((v >> 16) & 0xFF)
+        minor: u8((v >> 8) & 0xFF)
+        patch: u8(v & 0xFF)
+    }
+}
+
+pub fn (v Version) str() string {
+    return '${v.major}.${v.minor}.${v.patch}'
 }
 
 // Small safe wrapper type
